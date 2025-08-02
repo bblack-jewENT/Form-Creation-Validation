@@ -1,10 +1,15 @@
+#registration-form {
+    background-color: rgb(61, 114, 61);
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f5f5f5;
+    background-color: rgb(110, 134, 110);
     margin: 0;
 }
 
@@ -40,7 +45,7 @@ button {
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    width: 100%;
+    width: calc(100% - 22px);
     box-sizing: border-box;
     transition: background-color 0.3s ease;
 }
