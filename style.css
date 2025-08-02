@@ -57,13 +57,22 @@ button:hover {
 #form-feedback {
     margin-top: 10px;
     padding: 10px;
-    color: #d8000c;
-    background-color: #ffbaba;
     border-radius: 4px;
-    display: none;  /* Initially hides the feedback div */
+    display: none; /* Initially hides the feedback div */
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-div {
-    color: red; 
-    margin-bottom: 10px; 
+#form-feedback.error {
+    color: #d8000c;
+    background-color: #ffbaba;
+    border: 1px solid #d8000c;
 }
+
+#form-feedback.success {
+    color: #28a745;
+    background-color: #d4edda;
+    border: 1px solid #28a745;
+}
+

@@ -1,39 +1,45 @@
-const form = document.getElementById('registration-form');
-const username = document.getElementById('username');
-const email = document.getElementById('email');
-const message = document.getElementById('message');
- 
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('registration-form');
+    const feedbackDiv = document.getElementById('form-feedback');
+    const usernameInput = document.getElementById('username');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
 
-})
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-username.addEventListener('input', () => {
+        const username = usernameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
 
-    const name = username.value;
+        let isValid = true;
+        let messages = [];
 
-     if (name.length < 3 || name.length > 15) {
-            message.innerHTML = 'Username must contain between 3 and 15 characters';
-        } else if (name.length > 15) {
-            message.innerHTML = 'Username cannot exceed 15 characters';
-        } else if (name.includes(' ')) {
-            message.innerHTML = 'Username cannot contain spaces';
-        } else {
-            message.innerHTML = '';
+        // Username validation
+        if (username.length < 3) {
+            isValid = false;
+            messages.push('Username must be at least 3 characters long.');
         }
+
+        // Email validation
+        if (!(email.includes('@') && email.includes('.'))) {
+            isValid = false;
+            messages.push('Email must include "@" and "." characters.');
+        }
+
+        // Password validation
+        if (password.length < 8) {
+            isValid = false;
+            messages.push('Password must be at least 8 characters long.');
+        }
+
+        feedbackDiv.style.display = 'block';
+        if (isValid) {
+            feedbackDiv.textContent = 'Registration successful!';
+            feedbackDiv.style.color = '#28a745';
+        } else {
+            feedbackDiv.innerHTML = messages.join('<br>');
+            feedbackDiv.style.color = '#dc3545';
+        }
+    });
 });
-
-email.addEventListener('input', () => {
-    const email = email.value;
-    // const emailPattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-
-    if (email.excludes('@')) {
-        message.innerHTML = 'Please enter a valid email address';
-    } else if (email.length < 3 || email.length > 15) {
-        message.innerHTML = 'Email cannot be less than 3 or more than 15 characters';
-    } else if (email.includes(' ')) {
-        message.innerHTML = 'Email cannot contain spaces';
-    } else {
-        message.innerHTML = '';
-    }
-})
